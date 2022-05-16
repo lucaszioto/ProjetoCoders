@@ -9,16 +9,73 @@
 
 
     <script>
-        alert("Olá seja bem vindo");
-        alert('E aí topas aprender JavaScript?');
+        function mensagem() {
+            alert("Você é bem curioso né?");
+        }
+
+        function validacao() {
+            var nome = form_cad.nome_usuario.value;
+            var email = form_cad.email_usuario.value;
+            var senha = form_cad.senha_usuario.value;
+            var repete_senha = form_cad.repetir.value;
+            
+            var retorno = document.getElementById("retorno").innerHTML = nome;
 
 
+            if (nome == "") {
+                alert("Identifique-se! Preencha seu nome");
+                form_cad.nome_usuario.focus();
+                return false;
+            }
 
+            if (email == "" || email.indexOf('@') == -1) {
+                alert("Preencha um email válido para avançar");
+                form_cad.email_usuario.focus();
+                return false;
+            }
+            if (senha == "") {
+                alert("Por favor coloque sua senha");
+                form_cad.senha_usuario.focus();
+                return false;
+            }
+            if (repete_senha != senha) {
+                alert("Meu virgem a sua senha repetida precisa ser igual a senha original");
+                form_cad.repetir.focus();
+                return false;
+            } else {
+                alert("As senhas digitadas estão corretas");
+            }
+            document.writeln("Prezado " + nome + " seja bem vindo ao nosso curso, iremos enviar nosso conteúdo para o seu email " + email)
+        }
     </script>
 </head>
 
 <body>
     <h3>Aula de JavaScript</h3>
+    <form id="form_cad" method="post">
+        <fieldset>
+            <legend>Preencha os campos abaixo para obter mais informação</legend>
+            <br>
+
+            <label>Nome:</label>
+            <input type="text" name="nome_usuario"><br><br>
+
+            <label>Email:</label>
+            <input type="text" name="email_usuario"><br><br>
+
+            <label>Senha:</label>
+            <input type="password" name="senha_usuario"><br><br>
+
+            <label>Repetir senha:</label>
+            <input type="password" name="repetir"><br><br>
+
+
+            <input type="submit" onclick="return validacao()" value="Enviar"><br><br>
+
+        </fieldset>
+    </form>
+
+    <p id="retorno"></p>
 
 </body>
 
